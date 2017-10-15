@@ -105,5 +105,6 @@ pad = math.floor(math.log10(num_name))+1
 
 for i in range(1, num_name+1):
     print (str(i).zfill(pad)+".mp3")
-    seqname = str(i).zfill(pad)+".mp3"
-    os.system("mv "+seqname+" "+'"'+arg_name[i-1]+".mp3"+'"')
+    seqname = str(i).zfill(pad)
+    filename = '"' +seqname+" - "+arg_name[i-1]+".mp3"+ '"'
+    os.system("mv "+seqname+".mp3"+" "+filename)
