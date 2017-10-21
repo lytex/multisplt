@@ -12,8 +12,10 @@ import math
 # hh:mm:ss with mm <= 59, ss <= 59
 
 # Arguments format
-# 01 52nd Street Theme 00:11 02 A Night in Tunisia 05:03 03 All The Things You Are 08:07 04 Embraceable You 15:21
-# 00:00:00 01 Serenade Grotesque 00:03:20 02 Menuet Antique 00:09:31 03 Pavane Pour Une infante defunte 00:15:55 04 Jeux D'eau
+# 01 52nd Street Theme 00:11 02 A Night in Tunisia 05:03 
+# 03 All The Things You Are 08:07 04 Embraceable You 15:21
+# 00:00:00 01 Serenade Grotesque 00:03:20 02 Menuet Antique 
+# 00:09:31 03 Pavane Pour Une infante defunte 00:15:55 04 Jeux D'eau
 
 # The song names don't have to be between quotes and can be before or after the timestamps (the regex don't care)
 
@@ -36,11 +38,13 @@ def toMinSec(time):
     else:
         return None
 
-# TODO if the argument has ' quotes must be closed even when the script doesn't use them. This happens before the script runs
+# TODO if the argument has ' quotes must be closed 
+# even when the script doesn't use them. 
+# This happens before the script runs
 
-inputfile = sys.argv[1]
-argv = ' '.join(sys.argv[2:len(sys.argv)])
-# Removes name of the program argv[0] and input file argv[1] and converts it to srt separated by ' '
+#inputfile = sys.argv[1]
+argv = ' '.join(sys.argv[1:len(sys.argv)])
+# Removes name of the program argv[0] and input file and converts it # to srt separated by ' '
 
 
 # \d+:\d{2} -> mm:ss
@@ -52,6 +56,8 @@ arg_time = re.findall(time_regex, argv)
 num_time = len(arg_time)
 
 arg_name = re.split(time_regex, argv)
+inputfile = arg_name[0]
+del arg_name[0]
 
 
 # arg_name has some empty strings entries we need to remove
@@ -65,7 +71,8 @@ except ValueError:
 
 num_name = len(arg_name)
 
-# There's always a space at the end of arg_name[0] y the rest have spaces both at the end and the beggining
+# There's always a space at the end of arg_name[0] y the rest have 
+# spaces both at the end and the beggining
 
 temp = arg_name[0][0:len(arg_name[0])-1]
 arg_name[0] = temp
